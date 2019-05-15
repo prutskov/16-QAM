@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16-QAM-Modem", "16-QAM-Modem\16-QAM-Modem.vcxproj", "{4CFA744E-B081-4544-8E60-B299A707E987}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modem Example", "Modem Example\Modem Example.vcxproj", "{45692319-358C-4BAC-B7C5-678EA408722B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CFA744E-B081-4544-8E60-B299A707E987} = {4CFA744E-B081-4544-8E60-B299A707E987}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
