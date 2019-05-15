@@ -6,7 +6,8 @@
 int main(int argc, char ** argv)
 {
 	QAMModulator modulator(12, 23);
-	printf("Hello world %.2f\n", *modulator.modulate(NULL, 0));
+	modulator.modulate(NULL, 3);
+	printf("Hello world %.2f\n", 34.3);
 	::system("pause");
 	return 0;
 }
