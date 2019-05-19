@@ -2,12 +2,13 @@
 #include <stdio.h>
 
 #include "..\16-QAM-Modem\QAMModulator.h"
+#include "..\16-QAM-Modem\QAMDemodulator.h"
 
 int main(int argc, char ** argv)
 {
-	unsigned char data[] = {0, 1, 0, 1, 1, 1, 0, 0};
+	unsigned char data[] = {0, 0, 1, 1, 0, 0, 1, 1};
 
-	QAMModulator modulator(1, 0.36);
+	QAMModulator modulator(1, 3.14);
 	auto modulatedData = modulator.modulate(data, 8);
 
 	printf("Data: \n");
@@ -21,6 +22,9 @@ int main(int argc, char ** argv)
 		printf("%.3f ", modulatedData[i]);
 	}
 	printf("\n");
+
+	QAMDemodulator demodulator(1, 3.14);
+	demodulator.demodulate(modulatedData);
 	::system("pause");
 	return 0;
 }

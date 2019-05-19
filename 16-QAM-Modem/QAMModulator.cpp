@@ -18,13 +18,11 @@ std::vector<double> QAMModulator::modulate(const unsigned char * data, size_t si
 	/*Every 4 bits get 1 point of signal*/
 	const size_t nBits = 4;
 	const size_t signalSize = size / nBits;
-
-	modulatedData.resize(signalSize, 0);
-
+	
 	/*idxQuadrature = time*/
 	for(size_t idxQuadrature = 0; idxQuadrature < signalSize; idxQuadrature++)
 	{
-		double modulatedVal = getModulatedValue(data + nBits, idxQuadrature);
+		double modulatedVal = getModulatedValue(data + nBits*idxQuadrature, idxQuadrature);
 		modulatedData.push_back(modulatedVal);
 	}
 
