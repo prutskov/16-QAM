@@ -6,13 +6,16 @@
 
 int main(int argc, char ** argv)
 {
-	unsigned char data[] = {0, 0, 1, 1, 0, 0, 1, 1};
+	unsigned char data[] = { 0, 0, 1, 1,
+							0, 0, 1, 1 ,
+							1, 1, 0, 0,
+							0, 1, 1, 0};
 
-	QAMModulator modulator(1, 3.14);
-	auto modulatedData = modulator.modulate(data, 8);
+	QAMModulator modulator(1, 1.5);
+	auto modulatedData = modulator.modulate(data, 16);
 
 	printf("Data: \n");
-	for (size_t i = 0; i < 8; i++)
+	for (size_t i = 0; i < 16; i++)
 	{
 		printf("%d ", data[i]);
 	}
@@ -23,7 +26,7 @@ int main(int argc, char ** argv)
 	}
 	printf("\n");
 
-	QAMDemodulator demodulator(1, 3.14);
+	QAMDemodulator demodulator(1, 1.5);
 	demodulator.demodulate(modulatedData);
 	::system("pause");
 	return 0;
