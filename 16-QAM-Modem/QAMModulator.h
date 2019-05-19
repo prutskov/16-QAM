@@ -9,7 +9,8 @@ public:
 	virtual ~QAMModulator();
 
 private:
-	double getModulatedValue(const unsigned char *data, size_t size, size_t time);
+	double getModulatedValue(const unsigned char *data, size_t time);
+	inline unsigned char getValFromDiagram(unsigned char value);
 private:
 	double _A;
 	double _w;

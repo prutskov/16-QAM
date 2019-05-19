@@ -21,9 +21,11 @@ std::vector<double> QAMModulator::modulate(const unsigned char * data, size_t si
 
 	modulatedData.resize(signalSize, 0);
 
+	/*idxQuadrature = time*/
 	for(size_t idxQuadrature = 0; idxQuadrature < signalSize; idxQuadrature++)
 	{
-
+		double modulatedVal = getModulatedValue(data + nBits, idxQuadrature);
+		modulatedData.push_back(modulatedVal);
 	}
 
 	return modulatedData;
@@ -34,7 +36,31 @@ QAMModulator::~QAMModulator()
 {
 }
 
-double QAMModulator::getModulatedValue(const unsigned char * data, size_t size, size_t time)
+double QAMModulator::getModulatedValue(const unsigned char * data, size_t time)
 {
-	return 0.0;
+	/*Code low and high bits*/
+	const unsigned char lowBits = data[0] + data[1] * 2;
+	const unsigned char highBits = data[2] + data[3] * 2;
+
+	/*Get modulated amplitude for low and high bits*/
+	const double Uk = getValFromDiagram(lowBits);
+	const double Un = getValFromDiagram(highBits);
+
+	double modulatedVal = _A*(Uk*cos(_w*time) + Un*sin(_w*time));
+
+	return modulatedVal;
+}
+
+inline unsigned char QAMModulator::getValFromDiagram(unsigned char value)
+{
+	switch (value)
+	{
+	case 0: return -3;
+	case 1: return -1;
+	case 2: return  1;
+	case 3: return  3;
+	default:
+		break;
+	}
+	return 0;
 }
